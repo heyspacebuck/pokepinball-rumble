@@ -1,3 +1,5 @@
+EDITOR'S NOTE, AUGUST 2021: Holy moly, I got this SO WRONG in SO MANY WAYS. The method described below works, but only due to a series of very dumb coincidences. I have a much better method that does NOT require patching a ROM.
+
 # Pokémon Pinball Peripheral Rumble
 
 Pokémon Pinball was a 1999 game title for the Game Boy and Game Boy Color. It's one of the few Game Boy games that came with a rumble pack built into the cartridge, letting the player feel the action on the pinball table. This project breaks out the rumble feature, enabling an emulated Pokémon Pinball game to control peripheral devices.
