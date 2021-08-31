@@ -1,21 +1,19 @@
--- My first Lua script for BizHawk and the hacked Pokemon Pinball ROM
--- Space Buck, October 3 2020
-foo = 0;
+-- A Lua script for BizHawk and a regular Pokemon Pinball ROM
+-- Space Buck, August 30 2021
 
---comm.socketServerSetIp("192.168.178.71");
+-- Ideally this would read address 0xD803 to get vibration intensity and 0xD804 to get vibration duration, but that would involve re-writing things in the Double-Oh Repo that I don't have the means to test right now.
+
+local rumbleDuration = 0
 
 while true do
-  local rumble = memory.readbyte(0xff01)
-  -- If bit 3 is HIGH, rumble is happening
-  if rumble==0x08 then
-    if foo < 0 then
-      foo = 12
-      -- cURL here?
-      io.popen("curl doubleoh.local/pinball")
-      --comm.httpGet("http://doubleoh.local/pinball");
+  local rumble = memory.readbyte(0xd803)
+  if rumble ~= 0x00 then
+    if rumbleDuration < 0 then
+      rumbleDuration = 12
+      io.popen("curl doubleoh.local/pinball") -- Of course you can change this to suit your purposes
       print('bzzz')
     end
   end
-  foo = foo - 1;
-  emu.frameadvance();
+  rumbleDuration = rumbleDuration - 1
+  emu.frameadvance()
 end
